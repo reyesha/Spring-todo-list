@@ -35,7 +35,7 @@ public class TodoIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].todoItem").value("Test"))
-                .andExpect(jsonPath("$[0].isDone").isBoolean());
+                .andExpect(jsonPath("$[0].done").isBoolean());
     }
 
     @Test
