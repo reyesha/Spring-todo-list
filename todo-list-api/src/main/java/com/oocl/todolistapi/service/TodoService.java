@@ -5,6 +5,7 @@ import com.oocl.todolistapi.repository.TodoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoService {
@@ -27,6 +28,8 @@ public class TodoService {
     }
 
     public Todo updateTodo(Integer todoId, Todo todoUpdate) {
-        return todoRepository.save(todoUpdate);
+        Todo todoById = todoRepository.findById(todoId).get();
+        todoById.setDone(todoUpdate.isDone());
+        return todoRepository.save(todoById);
     }
 }
