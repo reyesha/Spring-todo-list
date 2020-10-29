@@ -12,6 +12,10 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Collections;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -78,5 +82,16 @@ public class TodoIntegrationTest {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.todoItem").value("Test"))
                 .andExpect(jsonPath("$.done").value(true));
+    }
+
+    @Test
+    void should_return_company_when_delete() throws Exception {
+        //GIVEN
+        Todo todo = new Todo(1,"Test", false);
+        Integer id = todoRepository.save(todo).getId();
+
+        //WHEN and THEN
+        mockMvc.perform(delete("/api/todos/{id}",id))
+                .andExpect(status().isOk());
     }
 }
