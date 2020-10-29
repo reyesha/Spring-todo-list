@@ -42,9 +42,8 @@ public class TodoController {
     }
 
     @PutMapping("/{todoId}")
-    public Todo updateTodo(@PathVariable(required = true) Integer todoId,
-                                   @RequestBody(required = true) Todo todoUpdate) {
-        return todoService.updateTodo(todoId, todoUpdate);
+    public TodoResponse updateTodo(@PathVariable(required = true) Integer todoId,
+                                   @RequestBody(required = true) TodoRequest todoUpdate) {
+        return todoMapper.toResponse(todoService.updateTodo(todoId, todoMapper.toEntity(todoUpdate)));
     }
-
 }
