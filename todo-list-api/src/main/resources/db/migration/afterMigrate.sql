@@ -1,0 +1,3 @@
+delete from todo;
+
+INSERT INTO TODO (ID, TODO_ITEM, IS_DONE) VALUES (1, 'TEST', FALSE);
