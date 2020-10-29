@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -35,5 +36,21 @@ public class TodoIntegrationTest {
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].todoItem").value("Test"))
                 .andExpect(jsonPath("$[0].done").isBoolean());
+    }
+
+    @Test
+    void should_return_todo_when_createTodos_given_todo_request() throws Exception {
+        String todoRequestAsJson = " {\n" +
+                "    \"todoItem\": \"Test\",\n" +
+                "    \"done\": false\n" +
+                "}";
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/todos")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(todoRequestAsJson))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").isNumber())
+                .andExpect(jsonPath("$.todoItem").value("Test"))
+                .andExpect(jsonPath("$.done").isBoolean());
     }
 }
