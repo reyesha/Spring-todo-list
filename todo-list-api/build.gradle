@@ -23,6 +23,7 @@ dependencies {
 	testCompile "org.mockito:mockito-core:3.4.0"
 	implementation group: 'org.flywaydb', name: 'flyway-core', version: '6.5.3'
 	}
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.2'
 }
 
 test {

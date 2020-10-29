@@ -1,5 +1,7 @@
 package com.oocl.todolistapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,7 @@ public class Todo {
     @SequenceGenerator(name = "todo_seq", allocationSize = 1)
     private Integer id;
     private String todoItem;
+    @JsonProperty("isDone")
     private boolean isDone;
 
     public Todo() {

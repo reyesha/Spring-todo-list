@@ -35,7 +35,7 @@ public class TodoIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").isNumber())
                 .andExpect(jsonPath("$[0].todoItem").value("Test"))
-                .andExpect(jsonPath("$[0].done").isBoolean());
+                .andExpect(jsonPath("$[0].isDone").isBoolean());
     }
 
     @Test
@@ -52,5 +52,25 @@ public class TodoIntegrationTest {
                 .andExpect(jsonPath("$.id").isNumber())
                 .andExpect(jsonPath("$.todoItem").value("Test"))
                 .andExpect(jsonPath("$.done").isBoolean());
+    }
+
+    @Test
+    void should_return_update_todo_when_updateTodo_given_todoId_and_todo_request() throws Exception {
+        Todo todo = new Todo(1,"Test",false);
+        todoRepository.save(todo);
+
+        String todoRequestAsJson = "{\n" +
+                "    \"id\": \"1\",\n" +
+                "    \"todoItem\": \"Test\",\n" +
+                "    \"done\": true\n" +
+                "}";
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/todos/{todoId}",1)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(todoRequestAsJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.todoItem").value("Test"))
+                .andExpect(jsonPath("$.done").value(true));
     }
 }
