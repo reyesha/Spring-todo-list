@@ -2,6 +2,7 @@ package com.oocl.todolistapi;
 
 import com.oocl.todolistapi.model.Todo;
 import com.oocl.todolistapi.repository.TodoRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,6 +25,11 @@ public class TodoIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @AfterEach
+    void tearDown(){
+        todoRepository.deleteAll();
+    }
 
     @Test
     void should_return_todos_when_getAllTodos() throws Exception {
