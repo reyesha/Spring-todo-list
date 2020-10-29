@@ -13,12 +13,47 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/todo-list-api/src/main/java/com/oocl/todolistapi/Configuration/CORSConfiguration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/todo-list-api/src/main/java/com/oocl/todolistapi/Controllers/TodoController.java">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/todo-list-api/src/main/java/com/oocl/todolistapi/model/Todo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/todo-list-api/src/main/java/com/oocl/todolistapi/repository/TodoRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/todo-list-api/src/main/java/com/oocl/todolistapi/service/TodoService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/todo-list-api/src/main/resources/application.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/todo-list-api/src/main/resources/db/migration/V20201029140801__init_db.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/todo-list-api/src/main/resources/db/migration/afterMigrate.sql">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/todo-list-api/src/main/resources/db/migration/afterMigration.sql">
           <value>
             <set />
           </value>
