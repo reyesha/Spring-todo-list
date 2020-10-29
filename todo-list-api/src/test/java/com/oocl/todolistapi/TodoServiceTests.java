@@ -16,16 +16,28 @@ import static org.mockito.Mockito.when;
 public class TodoServiceTests {
     TodoRepository todoRepository = Mockito.mock(TodoRepository.class);
     List<Todo> expectedTodo = Arrays.asList(new Todo(), new Todo());
-
+    Todo todoRequest = new Todo(1,"test",false);
+    TodoService todoService = new TodoService(todoRepository);
     @Test
     void should_return_todos_when_getAllTodos() {
         // given
         when(todoRepository.findAll()).thenReturn(expectedTodo);
-        TodoService todoService = new TodoService(todoRepository);
         // when
         List<Todo> actualTodos = todoService.getAllTodos();
 
         // then
         assertEquals(expectedTodo.size(),actualTodos.size());
+    }
+
+    @Test
+    void should_create_todo_when_createTodo_given_todo_request() {
+        // given
+        when(todoRepository.save(todoRequest)).thenReturn(todoRequest);
+
+        // when
+        Todo todoActual = todoService.createTodo(todoRequest);
+
+        // then
+        assertEquals(todoRequest.getId(),todoActual.getId());
     }
 }
