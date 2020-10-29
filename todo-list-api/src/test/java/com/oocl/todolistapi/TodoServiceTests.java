@@ -54,4 +54,16 @@ public class TodoServiceTests {
         // then
         verify(todoRepository).deleteById(1);
     }
+
+    @Test
+    void should_return_updated_todo_when_updateTodo_given_todoId_and_todoRequest() {
+        // given
+        when(todoRepository.findById(1)).thenReturn(Optional.of(todoRequest));
+
+        // when
+        Todo todoActual = todoService.updateTodo(1,todoRequest);
+
+        // then
+        verify(todoRepository).save(todoRequest);
+    }
 }
