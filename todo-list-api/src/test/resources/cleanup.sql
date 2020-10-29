@@ -1,0 +1,1 @@
+alter sequence todo_seq restart with 1
