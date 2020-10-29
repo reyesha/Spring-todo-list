@@ -1,5 +1,6 @@
 package com.oocl.todolistapi.Controllers;
 
+import com.oocl.todolistapi.dto.TodoRequest;
 import com.oocl.todolistapi.dto.TodoResponse;
 import com.oocl.todolistapi.mapper.TodoMapper;
 import com.oocl.todolistapi.model.Todo;
@@ -30,8 +31,9 @@ public class TodoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Todo create(@RequestBody Todo todoRequest) {
-        return todoService.createTodo (todoRequest);
+    public TodoResponse create(@RequestBody TodoRequest todoRequest) {
+        Todo saveTodo = todoService.createTodo(todoMapper.toEntity(todoRequest));
+        return todoMapper.toResponse(saveTodo);
     }
 
     @DeleteMapping("/{todoId}")
